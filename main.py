@@ -55,7 +55,7 @@ embeddings = get_embedding_model()
 model = ChatMistralAI(
     model="mistral-small-2506",
     temperature=0.4,
-    max_tokens=150
+    max_tokens=300
 )
 
 
