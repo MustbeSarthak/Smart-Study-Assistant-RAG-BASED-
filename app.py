@@ -5,7 +5,6 @@ from langchain_chroma import Chroma
 from src.splitters.text_splitter import split_documents
 from src.embeddings.embeddings_model import get_embedding_model
 from langchain_core.prompts import ChatPromptTemplate
-
 load_dotenv()
 
 # PDF Loader

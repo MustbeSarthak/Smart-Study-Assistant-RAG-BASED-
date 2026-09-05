@@ -1,5 +1,4 @@
 import os
-import uuid
 from dotenv import load_dotenv
 from fastapi import FastAPI, UploadFile, File, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
@@ -13,15 +12,11 @@ from langchain_core.prompts import ChatPromptTemplate
 from src.splitters.text_splitter import split_documents
 from src.embeddings.embeddings_model import get_embedding_model
 
-
 load_dotenv()
-
 # ==================================================
 # APP
 # ==================================================
-
 app = FastAPI(title="Smart Study Assistant")
-
 
 app.add_middleware( CORSMiddleware,
     allow_origins=["*"],
@@ -33,7 +28,6 @@ app.add_middleware( CORSMiddleware,
 # ==================================================
 # DIRECTORIES
 # ==================================================
-
 DATA_DIR = "data"
 USERS_DIR = os.path.join(DATA_DIR, "users")
 
@@ -44,14 +38,12 @@ os.makedirs(USERS_DIR, exist_ok=True)
 # ==================================================
 # EMBEDDING MODEL
 # ==================================================
-
 embeddings = get_embedding_model()
 
 
 # ==================================================
 # AI MODEL
 # ==================================================
-
 model = ChatMistralAI(
     model="mistral-small-2506",
     temperature=0.4,
@@ -62,7 +54,6 @@ model = ChatMistralAI(
 # ==================================================
 # PROMPT
 # ==================================================
-
 prompt_temp = ChatPromptTemplate.from_messages([
     (
         "system",
@@ -90,7 +81,6 @@ Context:
 # ==================================================
 # REQUEST MODEL
 # ==================================================
-
 class QuestionRequest(BaseModel):
     question: str
     user_id: str
